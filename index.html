@@ -1,0 +1,189 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Developing a Paragraph – Student</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Nunito+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f5fb;--card:#fff;--ink:#1b1f3b;--mute:#566079;--line:#d9deee;--acc:#5b3fd4;--accT:#fff;--t:#ffd84d;--s:#8ecbff;--e:#9be7b5;--c:#ffb3c7;--ok:#16895a;--bad:#c9304f;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10122a;--card:#1a1d3d;--ink:#eef0fb;--mute:#a4abc9;--line:#2f3563;--acc:#9a86ff;--accT:#10122a;--ok:#4cd697;--bad:#ff7a93;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#10122a;--card:#1a1d3d;--ink:#eef0fb;--mute:#a4abc9;--line:#2f3563;--acc:#9a86ff;--accT:#10122a;--ok:#4cd697;--bad:#ff7a93;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 'Nunito Sans',system-ui,sans-serif;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.15;margin:0}
+.wrap{max-width:1000px;margin:0 auto;padding:18px 16px 70px}
+.eyebrow{font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem;color:var(--acc)}
+h1{font-size:clamp(2.4rem,8vw,4.4rem);font-weight:800;letter-spacing:-.02em;margin:6px 0 10px}
+h1 mark{background:linear-gradient(transparent 55%,var(--t) 55%);color:inherit}
+.sub{color:var(--mute);max-width:60ch;margin:0}
+nav{display:flex;gap:6px;flex-wrap:wrap;margin:22px 0 18px;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:5}
+nav button,.btn{font:800 .95rem 'Nunito Sans',sans-serif;border:2px solid var(--line);background:var(--card);color:var(--ink);padding:9px 14px;border-radius:12px;cursor:pointer;min-height:44px}
+nav button[aria-selected=true],.btn.go{background:var(--acc);border-color:var(--acc);color:var(--accT)}
+.btn.ghost{background:transparent}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.panel[hidden]{display:none}
+.box{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:18px;margin:14px 0}
+.hint{color:var(--mute);font-size:.93rem}
+.tl{display:flex;height:34px;border-radius:10px;overflow:hidden;margin:14px 0}
+.tl i{display:flex;align-items:center;justify-content:center;font:800 .75rem sans-serif;color:#1b1f3b;font-style:normal}
+.stages{display:grid;gap:10px}
+.st{display:flex;gap:12px;align-items:flex-start;border:2px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--card)}
+.st.now{border-color:var(--acc);box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 25%,transparent)}
+.st b.min{min-width:64px;font-family:Fraunces,serif;font-size:1.15rem}
+.st p{margin:2px 0 0;color:var(--mute);font-size:.94rem}
+.clock{font:800 2.2rem Fraunces,serif}
+.sent{padding:12px;border-radius:12px;border:2px solid var(--line);margin:10px 0}
+.sent p{margin:0 0 8px;font-size:1.05rem}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font:800 .82rem 'Nunito Sans',sans-serif;border:2px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:5px 12px;cursor:pointer}
+.tag.on{border-color:var(--ink)}
+.tag.on[data-k=topic],.pt-topic{background:var(--t);color:#1b1f3b}.tag.on[data-k=support],.pt-support{background:var(--s);color:#1b1f3b}.tag.on[data-k=example],.pt-example{background:var(--e);color:#1b1f3b}.tag.on[data-k=concluding],.pt-concluding{background:var(--c);color:#1b1f3b}
+.sent.ok{border-color:var(--ok)}.sent.bad{border-color:var(--bad)}
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.legend span{padding:3px 10px;border-radius:999px;font-weight:800;font-size:.82rem}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:14px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px}
+.tk h3{font-size:1.15rem;margin-bottom:8px}
+.chip{display:inline-block;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:2px 9px;margin:2px;font-weight:600;font-size:.92rem}
+.up{border-left:5px solid var(--acc);padding:4px 0 4px 12px;margin:8px 0;font-size:.96rem}
+.up s{color:var(--mute)}.up b{color:var(--acc)}
+.ord{display:flex;gap:8px;align-items:center;padding:10px 12px;border:2px solid var(--line);border-radius:12px;margin:8px 0;background:var(--card)}
+.ord span{flex:1}.ord button{min-width:44px;min-height:44px;border:2px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;font-size:1.1rem;cursor:pointer}
+.ord.ok{border-color:var(--ok)}.ord.bad{border-color:var(--bad)}
+.q{margin:16px 0}.q p{margin:0 0 8px;font-weight:700}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opt{font:600 .98rem 'Nunito Sans',sans-serif;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:8px 14px;cursor:pointer;min-height:44px}
+.opt.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 20%,transparent)}.opt.bad{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 20%,transparent)}
+.why{font-size:.9rem;color:var(--mute);margin-top:4px}
+textarea,select{width:100%;font:400 1.05rem/1.6 'Nunito Sans',sans-serif;color:var(--ink);background:var(--bg);border:2px solid var(--line);border-radius:12px;padding:12px}
+select{width:auto}
+.topic{font:800 clamp(1.4rem,4.5vw,2.1rem)/1.2 Fraunces,serif;margin:8px 0}
+.chk{list-style:none;padding:0;margin:8px 0}.chk li{padding:5px 0}
+.chk li::before{content:"○ ";color:var(--mute)}.chk li.y::before{content:"✔ ";color:var(--ok)}.chk li.y{color:var(--ok);font-weight:700}
+.stats{font-weight:800;color:var(--acc)}
+#printArea{display:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media print{html,body{display:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+ <div class="eyebrow">Student version · Wall Street English N4 (Levels 10–13)</div>
+ <h1>Developing a <mark>Paragraph</mark></h1>
+ <p class="sub">Follow along with your teacher: see how a strong paragraph is built, upgrade your grammar, then write your own.</p>
+</header>
+<nav role="tablist" id="nav"></nav>
+
+<section class="panel" id="p-plan">
+ <div class="box"><h2>Warm-up</h2>
+  <p class="hint">Discuss with a partner. Your teacher will guide you.</p>
+  <ol><li>When you read a long text in English, how do you know where one idea ends and the next begins?</li><li>Look at this “bad paragraph”: <em>“Cities are crowded. I like coffee. Public transport is cheaper. Many people drive.”</em> What is wrong with it?</li><li>What small words could connect these ideas?</li></ol>
+ </div>
+</section>
+
+<section class="panel" id="p-anat" hidden>
+ <div class="box"><h2>1 · Anatomy of a paragraph</h2>
+  <p class="hint">Label each sentence. Tap a tag, then press Check.</p>
+  <div class="legend"><span class="pt-topic">Topic sentence = main idea</span><span class="pt-support">Support = explanation / reason</span><span class="pt-example">Example = evidence</span><span class="pt-concluding">Concluding = wrap-up</span></div>
+  <div id="anat"></div>
+  <div class="row"><button class="btn go" id="aCheck">Check</button><span id="aRes" class="stats"></span></div>
+ </div>
+</section>
+
+<section class="panel" id="p-tool" hidden>
+ <div class="box"><h2>2 · Grammar toolkit</h2><p class="hint">Linkers connect ideas. Upgrades make sentences sound more advanced (N4 / B2–C1).</p></div>
+ <div class="grid" id="tk"></div>
+ <div class="box"><h3>Upgrade it: basic → advanced</h3><div id="ups"></div></div>
+</section>
+
+<section class="panel" id="p-ord" hidden>
+ <div class="box"><h2>3 · Put the paragraph in order</h2>
+  <p class="hint">Use ↑ ↓ to move sentences. Look for the topic sentence, linkers and the conclusion.</p>
+  <div id="ord"></div>
+  <div class="row"><button class="btn go" id="oCheck">Check order</button><button class="btn ghost" id="oShuf">Shuffle again</button><span id="oRes" class="stats"></span></div>
+  
+ </div>
+</section>
+
+<section class="panel" id="p-quiz" hidden>
+ <div class="box"><h2>4 · Upgrade it: grammar check</h2><p class="hint">Wrong choices turn red. Try again until you find the right one.</p><div id="quiz"></div>
+  <div class="row"><strong class="stats" id="qRes"></strong><button class="btn ghost" id="qReset">Try again</button></div></div>
+</section>
+
+<section class="panel" id="p-write" hidden>
+ <div class="box"><h2>5 · Writing lab</h2>
+  <div class="row"><button class="btn go" id="newTopic">Pick a topic</button><select id="pos" aria-label="Your position"><option>I agree</option><option>I disagree</option><option>It depends</option></select></div>
+  <div class="topic" id="topic">Press “Pick a topic”.</div>
+  <div class="row"><div class="clock" id="wc">15:00</div><button class="btn" id="wstart">Start writing timer</button></div>
+  <p class="hint">Sentence frames (tap to insert):</p>
+  <div id="frames"></div>
+  <textarea id="ta" rows="9" placeholder="Write your paragraph here (6–8 sentences)…"></textarea>
+  <p class="stats" id="stats">0 words · 0 sentences</p>
+  <h3>Self-check</h3>
+  <ul class="chk" id="chk"></ul>
+  <label class="hint"><input type="checkbox" class="man"> My first sentence states the main idea</label><br>
+  <label class="hint"><input type="checkbox" class="man"> I included a specific example</label>
+ </div>
+</section>
+
+
+</div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const shuffle=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]);
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const PT={topic:"Topic sentence",support:"Support",example:"Example",concluding:"Concluding"};
+/* data */
+const MODEL=[["Remote working has transformed the way many companies operate.","topic"],["Not only does it reduce commuting time, but it also allows employees to manage their day more flexibly.","support"],["For instance, a recent survey found that most staff who worked from home felt more productive than they had in the office.","example"],["However, it can leave people feeling isolated, which is why successful teams meet regularly.","support"],["Overall, remote working is clearly here to stay, provided that companies support the people who depend on it.","concluding"]];
+const ORDER=["Learning a language is far more rewarding when you practise it every day.","To begin with, regular contact helps new words move from short-term to long-term memory.","For example, students who review vocabulary for ten minutes daily remember far more than those who study for two hours once a week.","Moreover, daily practice builds confidence, so learners are less afraid of making mistakes.","Although progress may feel slow at first, the results become obvious after a few months.","In conclusion, small, consistent habits will always beat occasional bursts of effort."];
+const TK=[["Adding","Moreover · In addition · Furthermore · Not only… but also · What is more"],["Contrast","However · Nevertheless · Whereas · While · Although · Despite / In spite of + noun/-ing"],["Cause","Because of · Due to · Given that · Since · Owing to the fact that"],["Result","As a result · Consequently · Therefore · Hence · …, which means that"],["Examples","For instance · For example · such as · A case in point is…"],["Sequence & conclusion","To begin with · Following this · Finally · Overall · In conclusion · To sum up"]];
+const UPS=[["Relative clause","Our company launched an app. It helps students revise.","Our company launched an app, <b>which</b> helps students revise."],["Participle clause","She finished the report. Then she sent it.","<b>Having finished</b> the report, she sent it."],["Inversion","He arrived late and he also forgot the files.","<b>Not only did he</b> arrive late, but he also forgot the files."],["Reporting passive","People say that prices will rise.","Prices <b>are said to</b> rise. / <b>It is said that</b> prices will rise."],["Conditional","If you practise daily, you will improve.","<b>Provided that</b> you practise daily, you will improve."],["Noun phrase","Because prices rose, people spent less.","<b>The rise in prices led to a fall in</b> spending."]];
+const QZ=[["___ the heavy traffic, we arrived on time.",["Despite","Although","However","Because"],0,"Despite + noun phrase."],["The report, ___ was published last week, caused debate.",["what","which","who","where"],1,"Non-defining relative clause for things → which."],["Not only ___ late, but he also forgot the documents.",["he was","did he","was he","he did"],2,"Inversion after “Not only” with the verb “to be”: was he."],["___ that energy costs keep rising, many families are cutting back.",["Given","Despite","Although","Unless"],0,"“Given that” introduces a reason."],["___ the instructions carefully, she began the experiment.",["Having read","To have read","Read having","Reading to have"],0,"Participle clause for an earlier action."],["Some students prefer group work, ___ others work better alone.",["whereas","therefore","moreover","for instance"],0,"Whereas shows contrast."],["It ___ that prices will rise next year.",["expects","is expected","is expecting","expected"],1,"Reporting passive: It is expected that…"],["The factory closed; ___, hundreds lost their jobs.",["consequently","nevertheless","similarly","in contrast"],0,"Consequently shows result."]];
+const TOPICS=["Social media is changing the way people communicate.","Working from home is better than working in an office.","Adults learn languages more effectively than children.","City centres should ban private cars.","Money is the key to happiness.","Travelling alone is better than travelling in a group.","Technology makes our lives more stressful.","Everyone should learn to cook before leaving home."];
+const FRAMES=["One of the main reasons for this is…","Not only does…, but it also…","For instance, …","Having considered…, I believe…","This is why…, which means that…","Provided that…, …","It is widely believed that…","Overall, / In conclusion, …"];
+const LK=/\b(moreover|in addition|furthermore|however|whereas|although|despite|in spite of|nevertheless|consequently|as a result|therefore|for instance|for example|such as|overall|in conclusion|to sum up|because of|due to|given that|not only|provided that|unless|on the other hand|to begin with|finally|while|hence)\b/gi;
+/* tabs */
+const TABS=[["plan","Warm-up"],["anat","1 Anatomy"],["tool","2 Toolkit"],["ord","3 Order"],["quiz","4 Upgrade"],["write","5 Write"]];
+TABS.forEach(([id,l],i)=>{const b=document.createElement("button");b.role="tab";b.textContent=l;b.setAttribute("aria-selected",i===0);b.onclick=()=>go(id);b.dataset.t=id;$("#nav").appendChild(b)});
+function go(id){$$("#nav button").forEach(b=>b.setAttribute("aria-selected",b.dataset.t===id));TABS.forEach(([t])=>$("#p-"+t).hidden=t!==id);scrollTo(0,0)}
+/* anatomy */
+const ans={};
+MODEL.forEach(([s],i)=>{const d=document.createElement("div");d.className="sent";d.id="s"+i;d.innerHTML=`<p>${i+1}. ${esc(s)}</p><div class="tags">${Object.keys(PT).map(k=>`<button class="tag" data-k="${k}">${PT[k]}</button>`).join("")}</div>`;d.querySelectorAll(".tag").forEach(b=>b.onclick=()=>{ans[i]=b.dataset.k;paint(i);d.className="sent"});$("#anat").appendChild(d)});
+function paint(i){$$("#s"+i+" .tag").forEach(b=>b.classList.toggle("on",b.dataset.k===ans[i]))}
+$("#aCheck").onclick=()=>{let n=0;MODEL.forEach(([,k],i)=>{const ok=ans[i]===k;if(ok)n++;$("#s"+i).className="sent "+(ok?"ok":"bad")});$("#aRes").textContent=n+" / "+MODEL.length+(n==MODEL.length?" — perfect!":" — fix the red ones")};
+/* toolkit */
+TK.forEach(([h,t])=>{const d=document.createElement("div");d.className="box tk";d.innerHTML=`<h3>${h}</h3>`+t.split(" · ").map(x=>`<span class="chip">${esc(x)}</span>`).join("");$("#tk").appendChild(d)});
+UPS.forEach(([n,a,b])=>{const d=document.createElement("div");d.className="up";d.innerHTML=`<strong>${n}</strong><br><s>${a}</s><br>→ ${b}`;$("#ups").appendChild(d)});
+/* order */
+let arr=[];
+function oShuf(){do{arr=shuffle(ORDER.map((s,i)=>i))}while(arr.every((v,i)=>v===i));oRender();$("#oRes").textContent=""}
+function oRender(){$("#ord").innerHTML="";arr.forEach((v,i)=>{const d=document.createElement("div");d.className="ord";d.innerHTML=`<span>${esc(ORDER[v])}</span><button aria-label="Move up">↑</button><button aria-label="Move down">↓</button>`;const [u,dn]=d.querySelectorAll("button");u.onclick=()=>mv(i,-1);dn.onclick=()=>mv(i,1);$("#ord").appendChild(d)})}
+function mv(i,d){const j=i+d;if(j<0||j>=arr.length)return;[arr[i],arr[j]]=[arr[j],arr[i]];oRender()}
+$("#oShuf").onclick=oShuf;
+$("#oCheck").onclick=()=>{let n=0;$$("#ord .ord").forEach((d,i)=>{const ok=arr[i]===i;if(ok)n++;d.classList.add(ok?"ok":"bad");d.classList.remove(ok?"bad":"ok")});$("#oRes").textContent=n+" / "+arr.length+(n==arr.length?" — well done!":" — keep trying")};
+oShuf();
+/* quiz */
+let score=0,done=0;
+function qBuild(){score=0;done=0;$("#qRes").textContent="";$("#quiz").innerHTML="";QZ.forEach(([q,o,c,w],i)=>{const d=document.createElement("div");d.className="q";d.innerHTML=`<p>${i+1}. ${esc(q)}</p><div class="opts">${o.map((x,j)=>`<button class="opt" data-j="${j}">${esc(x)}</button>`).join("")}</div>`;let locked=false,missed=false;d.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{if(locked||b.classList.contains("bad"))return;const j=+b.dataset.j;if(j===c){b.classList.add("ok");locked=true;if(!missed)score++;if(++done===QZ.length)$("#qRes").textContent="First-try score: "+score+" / "+QZ.length}else{b.classList.add("bad");missed=true}});$("#quiz").appendChild(d)})}
+$("#qReset").onclick=qBuild;qBuild();
+/* writing */
+FRAMES.forEach(f=>{const b=document.createElement("button");b.className="chip";b.style.cursor="pointer";b.textContent=f;b.onclick=()=>{const t=$("#ta");t.value+=(t.value&&!/\s$/.test(t.value)?" ":"")+f.replace("…","");t.focus();upd()};$("#frames").appendChild(b)});
+$("#newTopic").onclick=()=>{$("#topic").textContent=pick(TOPICS)};
+let wt=null,wl=900;
+function wDraw(){$("#wc").textContent=String(Math.floor(wl/60)).padStart(2,"0")+":"+String(wl%60).padStart(2,"0")}
+$("#wstart").onclick=()=>{if(wt){clearInterval(wt);wt=null;wl=900;wDraw();$("#wstart").textContent="Start writing timer";return}$("#wstart").textContent="Stop";wt=setInterval(()=>{wl--;wDraw();if(wl<=0){clearInterval(wt);wt=null;$("#wc").textContent="Time!";$("#wstart").textContent="Start writing timer";wl=900}},1000)};
+const CK=[["At least 5 sentences",t=>t.s>=5],["At least 3 different linkers",t=>t.l.length>=3],["A relative clause (which / who / whose / where)",t=>/,\s*(which|who|whose|where)\b|\b(who|which|whose)\b/i.test(t.v)],["A participle opening (Having…, Given…, -ing…,)",t=>/(^|[.!?]\s+)(having|being|given|\w+ing)\b[^.!?]*?,/i.test(t.v)],["A concluding phrase (Overall / In conclusion / To sum up)",t=>/(overall|in conclusion|to sum up|all in all)/i.test(t.v)]];
+$("#chk").innerHTML=CK.map(([l])=>`<li>${l}</li>`).join("");
+function upd(){const v=$("#ta").value,w=(v.match(/\S+/g)||[]).length,s=(v.match(/[^.!?]+[.!?]+/g)||[]).length,l=[...new Set((v.match(LK)||[]).map(x=>x.toLowerCase()))];$("#stats").textContent=`${w} words · ${s} sentences · linkers: ${l.join(", ")||"none yet"}`;const t={v,s,l};$$("#chk li").forEach((li,i)=>li.classList.toggle("y",CK[i][1](t)))}
+$("#ta").oninput=upd;
+window.addEventListener("keydown",e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="p")e.preventDefault()});
+</script>
+</body>
+</html>
+
+</body></html>
